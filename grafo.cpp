@@ -1,31 +1,82 @@
 #include "grafo.h"
 #include <list>
 
+
 Grafo::Grafo(){
-    this->nodos = new vector<Nodo>;
-    this->cantidad_nodos = 0;
+    this->nodos =std::vector<std::list<std::string>>();
+}
+Grafo::~Grafo(){
+    //delete(this->nodos);
 }
 
-void Grafo::agregarNodo(const Nodo& nodo){
-      this->nodos.insert(nodo);
+void Grafo::agregarNodo(const std::string info){
+      this->nodos.push_back(std::list<std::string>());
+      this->nodos.back().push_back(info);
 }
-void Grafo::addEdgeIndices ( int pos1, int pos2 ) {
-      nodos[pos1].push_back(pos2);
+int encontrar_pos_nodo(std::vector<std::list<std::string>> nodos, const std::string info){
+    int pos = -1;
+    auto it = std::find(nodos.begin(), nodos.end(), info);
+
+    // If element was found
+    if (it != nodos.end()) {
+        // calculating the index
+        // of K
+         pos = distance(nodos.begin(),
+                             it);
+        //cout << index << endl;
+        return pos;
+    }
+    else {
+        // If the element is not
+        // present in the vector
+        return pos;
+    }
+}
+void Grafo::agregar_arista(const std::string info1, const std::string info2) {
+      size_t pos = encontrar_pos_nodo(this->nodos, info1);
+      this->nodos[pos].push_back(info2);
 
 }
-Nodos::iterator Grafo::encontrar_nodo(string info, bool& encontre){
-   std::vector<Nodo>::iterator iterador;
-   Nodo nodo(info);
-   iterador = std::find( nodos.begin(), nodos.end(), nodo);
+/*
+void Grafo::agregarNodo(const std::string informacion){
+    this->nodos.back().push_back(informacion);
+}
+string::iterator encontrar_nodo(const std::string info, bool& encontre){
+   std::vector<std::string>::iterator iterador;
+   //Nodo nodo(info);
+   iterador = std::find( nodos.begin(), nodos.end(), info);
    if (iterador != nodo.end()){
         encontre = true;
         return iterador;
    } else {
        encontre = false;
-       return nodo.end();
+       return nodos.end();
    }
 }
 
+void Grafo::agregoArista(const std::string nodo1Info, const std::string nodo2Info){
+      bool encontre_nodo1= false;
+      bool encontre_nodo2 = false;
+      std::list<std::string>::iterator it1;
+      it = encontrar_nodo(nodo1_info, encontre_nodo1);
+      int pos_nodo1 = -1, pos_nodo2 = -1;
+      if (!encontre_nodo1){
+          nodos->agregarNodo(nodo1Info);
+          pos_nodo1 = nodos.size() -1;
+      } else {
+          pos_nodo1 = it1 - nodos.begin();
+      }
+      std::list<std::string>::iterator it2;
+      it = encontrar_nodo(nodo2_info, encontre_nodo2);
+      if (!encontre_nodo2){
+          nodos->agregarNodo(nodo2Info);
+          pos_nodo2 = nodos.size() -1;
+      } else {
+          pos_nodo1 = it2 - nodos.begin();
+      }
+      agregar_arista_indices( pos_n1, pos_n2);
+}
+/*
 void Grafo::agregoArista(const string nodo1Info, const string nodo2Info){
       bool encontro_n1 = false;
       bool encontro_n2 = false;
@@ -56,7 +107,8 @@ void Grafo::agregoArista(const string nodo1Info, const string nodo2Info){
    //assert( ( node1Index > -1 ) && ( node1Index <  vertices.size()));
    //assert( ( node2Index > -1 ) && ( node2Index <  vertices.size()));
    agregar_arista_indices( pos_n1, pos_n2);
-}
+}*/
+/*
 void Grafo::dfs_aux(int s, vector<bool> &visited){
     // stack for DFS
     stack<int> pila;
@@ -103,4 +155,4 @@ void Grafo::dfs() {
         if (!visited[i]){
             dfs_aux(i, visited);
         }
-}
+}*/

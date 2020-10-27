@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include "parceador.h"
 
 #define EXITO 0
 #define ERROR 1
@@ -32,7 +33,7 @@ int archivo_leer(ifstream& archivo, String& etiqueta, String& instruccion){
 }*/
 
 int main(int argc, char** argv){
-  int cantidad_de_archivos = argc;
+  /*int cantidad_de_archivos = argc;
   int posicion_argumento = 1;
   std::ifstream archivo;
   std::string instruccion;
@@ -48,7 +49,7 @@ int main(int argc, char** argv){
       cantidad_de_archivos -=1;
       posicion_argumento +=1;
   }*/
-  archivo.open(argv[1]);
+  /*archivo.open(argv[1]);
   std::string formatoDosPuntos(":");
   std::string ret = "ret";
   while (getline(archivo ,etiqueta, '\n')){
@@ -65,6 +66,9 @@ int main(int argc, char** argv){
         }
   }
   archivo.close();
+*/
+  Parceador parcer(argv[1]);
+  parcer.parcear_archivo();
 
   return 0;
 }

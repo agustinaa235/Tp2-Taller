@@ -1,29 +1,20 @@
-#ifdef GRAFO_H
+#ifndef GRAFO_H
 #define GRAFO_H
 
 #include <vector>
-typedef std::vector< Nodo > Nodos;
+#include <list>
+#include<string>
 
-struct Nodo {
-private:
-    string informacion;
-    vector<string> vecinos;
-
-public:
-    Nodo(String informacion);
-    void agregar_vecino(String vecino);
-};
 class Grafo{
-
-    private:
-            Nodos nodos;
-            int cantidad_nodos;
-
     public:
           Grafo();
-          void agreagar_arista(string nodo1Info, string nodo2Info);
-          void dfs(Nodo nodo);
-
+          ~Grafo();
+          void agregar_arista(const std::string info1, const std::string info2);
+          void agregarNodo(const std::string informacion);
+          //void agregar_arista_indices(int pos1, int pos2);
+          //void dfs(Nodo nodo);
+    private:
+          std::vector<std::list<std::string>> nodos;
 };
 
 #endif
