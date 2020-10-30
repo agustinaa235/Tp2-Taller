@@ -1,18 +1,100 @@
 #include "grafo.h"
-#include <list>
+#include <vector>
+#include <iostream>
+//#include <string>
+#include <stack>
 
 
 Grafo::Grafo(){
-    this->nodos =std::vector<std::list<std::string>>();
+    this->nodos =std::vector<Nodo>();
 }
 Grafo::~Grafo(){
     //delete(this->nodos);
 }
 
-void Grafo::agregarNodo(const std::string info){
-      this->nodos.push_back(std::list<std::string>());
-      this->nodos.back().push_back(info);
+Nodo::Nodo(const std::string informacion){
+    this->informacion = informacion;
+    this->vecinos = std::vector<Nodo*>();
+    this->visitado = false;
 }
+Nodo::~Nodo(){
+
+}
+std::string Nodo::get_informacion(){
+    return this->informacion;
+}
+bool Nodo::fue_visitado(){
+    return this->visitado;
+}
+std::vector<Nodo*> Nodo::get_vecinos(){
+    return this->vecinos;
+}
+
+void Nodo::visitar(){
+    this->visitado = true;
+}
+
+void Nodo::agregar_vecino(Nodo& nodovecino){
+    this->vecinos.push_back(&nodovecino);
+    //std::cout << this->informacion << ' ' << "agregego ->: " << ' ' << this->vecinos.back()->get_informacion() << "\n";
+    std::cout << "\n";
+}
+int Nodo::es_igual_a(const std::string informacion) const{
+    if(this->informacion == informacion || this->informacion.find(informacion) >-1){
+        return 0;
+    }
+    return -1;
+}
+void Grafo::agregar_nodo(const std::string info){
+      Nodo nodo(info);
+      this->nodos.push_back(nodo);
+      //std::cout << "Nodo agregado: " << ' ' << this->nodos.back().get_informacion() << "\n";
+}
+
+int Grafo::buscar_nodo(const std::string informacion) const{
+    int pos_nodo = -1;
+    for (std::size_t i = 0; i < this->nodos.size(); i++){
+        if(nodos[i].es_igual_a(informacion) == 0){
+              pos_nodo = i;
+        }
+    }
+    return pos_nodo;
+}
+
+void Grafo::agregar_arista(const std::string info1, const std::string info2){
+
+    int pos_nodo_apuntador = this->buscar_nodo(info1);
+    int pos_nodo_apuntado = this->buscar_nodo(info2);
+    Nodo& nodo_apuntador = this->nodos[pos_nodo_apuntador];
+    Nodo& nodo_apuntado = this->nodos[pos_nodo_apuntado];
+  //  std::cout << " nodo apuntador: " << ' ' << nodo_apuntador.get_informacion() << "\n";
+    //std::cout << " nodo apuntado: " << ' ' << nodo_apuntado.get_informacion() << "\n";
+    //std::cout << "\n";
+    nodo_apuntador.agregar_vecino(nodo_apuntado);
+}
+
+int Grafo::dfs(){
+    std::cout << "algortimo dfs" << "\n";
+    std:: stack<Nodo*> dfsPila;
+    dfsPila.push(&(this->nodos[0]));
+    while (!dfsPila.empty()){
+        Nodo* nodo = dfsPila.top();
+        dfsPila.pop();
+        if(!nodo->fue_visitado()){
+            std::cout << nodo->get_informacion() << " ";
+            std::cout<<"->";
+            nodo->visitar();
+        }
+        for (int i =0 ;i<nodo->get_vecinos().size(); i++){
+            Nodo* nodo_vecino = nodo->get_vecinos()[i];
+            if (!nodo_vecino->fue_visitado()){
+                dfsPila.push(nodo_vecino);
+            }
+        }
+    }
+}
+
+/*
 int encontrar_pos_nodo(std::vector<std::list<std::string>> nodos, const std::string info){
     int pos = -1;
     auto it = std::find(nodos.begin(), nodos.end(), info);
