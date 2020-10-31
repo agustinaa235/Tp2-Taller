@@ -85,12 +85,10 @@ void Parceador::inicializar_grafo(Grafo grafo){
 */
 void Parceador::inicializar_grafo(Grafo &grafo){
     for(int i=0; i<instrucciones.size(); i++){
-        if(i != (instrucciones.size() -1)){
-        this->instrucciones[i].agregarse_al_grafo(grafo,
-                                                  this->instrucciones[i+1],
-                                                  this->instrucciones);
-        std::cout << "agrego al grafo" << instrucciones[i].get_informacion() << "\n";                                          
-        }
+
+        this->instrucciones[i].agregarse_al_grafo(grafo,i,this->instrucciones);
+        std::cout << "agrego al grafo" << instrucciones[i].get_informacion() << "\n";
+
     }
 }
 Instruccion crearInstruccion(const std::string data){
