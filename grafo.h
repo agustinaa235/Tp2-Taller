@@ -6,12 +6,10 @@
 
 
 class Nodo{
-
   public:
-        Nodo(const std::string informacion, int orden);
+        Nodo(const std::string& informacion, const int& orden);
         ~Nodo();
         void agregar_vecino(Nodo& nodoVecino);
-        int es_igual_a(const std::string informacion) const;
         std::string get_informacion();
         std::vector<Nodo*>& get_vecinos();
         bool fue_visitado();
@@ -31,13 +29,12 @@ class Grafo{
     public:
           Grafo();
           ~Grafo();
-          void agregar_nodo(std::string informacion);
-          int buscar_nodo(const std::string informacion) const;
-          void agregar_arista(int pos1, int pos2);
+          void agregar_nodo(const std::string& informacion);
+          void agregar_arista(const int& pos1,const int& pos2);
           bool dfs();
+          bool nodos_sin_visitar();
     private:
           std::vector<Nodo> nodos;
-
 };
 
 #endif

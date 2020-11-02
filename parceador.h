@@ -9,9 +9,8 @@
 #include "instruccion.h"
 
 class Parceador{
-
     public:
-          Parceador(const std::string nombre_archivo);
+          explicit Parceador(const std::string& nombre_archivo);
           ~Parceador();
           int parcear_archivo(Grafo& grafo);
           void inicializar_grafo(Grafo& grafo);

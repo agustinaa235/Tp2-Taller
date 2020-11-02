@@ -1,20 +1,23 @@
 #ifndef THREAD_H
 #define THREAD_H
+#include "contenedor_de_archivos.h"
+#include "contenedor_de_resultados.h"
+#include <thread>
 
-class Thread{
-
-
+class Thread {
     public:
-        Thread ();
+        Thread(Contenedor_Archivos* contenedor_archivos,
+                Contenedor_Resultados* contenedor_resultados);
         void start();
         void join();
-        virtual void run();
-        virtual ~Thread();
+        void run();
+        ~Thread();
         Thread(const Thread&) = delete;
-        Thread& operator=(const Thread&) = delete;
-        Thread(Thread&& other);
-        Thread& operator=(Thread&& other);
+        Thread(Thread&& otroThread);
+
     private:
+          Contenedor_Archivos* contenedor_archivos;
+          Contenedor_Resultados* contenedor_resultados;
           std::thread thread;
 };
 
