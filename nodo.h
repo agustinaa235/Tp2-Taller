@@ -5,7 +5,8 @@
 #include <string>
 
 class Nodo{
-      public: /*
+      public:
+              /*
                 * inicializa el nodo, dejandolo valido para uso
               */
               Nodo(const std::string& informacion, const int& orden);
@@ -35,11 +36,12 @@ class Nodo{
                 * devuelve el numero en el cual fue agregado el nodo
               */
               int orden_de_agregado();
+              
       private:
-              std::string informacion;
-              std::vector<Nodo*> vecinos;
-              bool visitado;
-              int orden_agregado;
+            std::string informacion;
+            std::vector<Nodo*> vecinos;
+            bool visitado;
+            int orden_agregado;
 };
 
 #endif

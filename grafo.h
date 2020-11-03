@@ -7,7 +7,8 @@
 
 
 class Grafo{
-      public: /*
+      public:
+              /*
                 * creara al grafo dejandolo valido
               */
               Grafo();
@@ -35,10 +36,11 @@ class Grafo{
                 * devolvera true si hay nodos sin visitar sino devolvera false
                 * en caso de no llamar primero a la funcion de dfs devolvera
                 * que hay nodos sin visitar.
-              */  
+              */
               bool nodos_sin_visitar();
+              
       private:
-              std::vector<Nodo> nodos;
+            std::vector<Nodo> nodos;
 };
 
 #endif

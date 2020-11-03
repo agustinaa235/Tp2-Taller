@@ -22,17 +22,17 @@ int main(int argc, char** argv){
     std::vector<Thread> threads;
     ColaProtegida cola = ColaProtegida();
     Vector_Protegido vector = Vector_Protegido();
-    Contenedor_Resultados contenedor_resultados = Contenedor_Resultados(&vector);
+    Contenedor_Resultados contenedor_resultado = Contenedor_Resultados(&vector);
     Contenedor_Archivos contenedor_archivos = Contenedor_Archivos(&cola, argv,
                                                                   argc);
     contenedor_archivos.agregar_archivos();
     for (int i = 0; i < cant_de_hilos; i++) {
-        Thread thread = Thread(&contenedor_archivos, &contenedor_resultados);
+        Thread thread = Thread(&contenedor_archivos, &contenedor_resultado);
         threads.push_back(std::move(thread));
     }
     for (int i = 0; i<cant_de_hilos; i++){
         threads[i].start();
     }
-    contenedor_resultados.imprimir_resultados();
+    contenedor_resultado.imprimir_resultados();
     return 0;
 }

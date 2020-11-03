@@ -19,7 +19,7 @@ bool comparacion(const std::string& variable1, const std::string& variable2){
 
 void Vector_Protegido::cargar_resultados_si_son_validos(std::string& resultado){
     Lock lock(this->mutex);
-    if(resultado != ""){
+    if (resultado != ""){
         this->resultados.push_back(resultado);
         std::sort(this->resultados.begin(), this->resultados.end(),comparacion);
     }

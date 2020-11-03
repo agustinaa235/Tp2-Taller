@@ -6,7 +6,8 @@
 #include <vector>
 
 class Instruccion{
-      public: /*
+      public:
+              /*
                 * inicializara a la instruccion dejandola valida para uso
               */
               Instruccion(const std::string& data,const bool& etiqueta);
@@ -33,6 +34,7 @@ class Instruccion{
                                                     std::vector<Instruccion>&
                                                     instrucciones,
                                                     const int& pos_instruccion);
+                                                    
       private:
               std::string informacion;
               bool etiqueta;

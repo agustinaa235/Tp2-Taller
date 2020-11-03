@@ -5,7 +5,8 @@
 #include <string>
 #include <vector>
 class Vector_Protegido{
-      public: /*
+      public:
+              /*
                 * Inicializara al vector portegido dejandolo valido para uso
               */
               Vector_Protegido();
@@ -22,7 +23,7 @@ class Vector_Protegido{
               /*
                 * se encarga de imprimir todos los resultados que tiene
                 * en el vector
-              */  
+              */
               void imprimir_resultados();
       private:
               std::vector<std::string> resultados;

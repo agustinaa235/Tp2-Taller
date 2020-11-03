@@ -7,7 +7,8 @@
 
 
 class ColaProtegida {
-      public: /*
+      public:
+              /*
                 * creara la cola protegida dejandola valida
               */
               ColaProtegida();
@@ -27,9 +28,10 @@ class ColaProtegida {
               void cargar_nombre_archivo(std::string nombre_archivo);
               /*
                 * devuelve si true si la cola esta vacia, sino false
-              */  
+              */
               bool esta_vacia();
-      private:
+
+      private: 
           std::mutex mutex;
           std::queue<std::string> cola_de_archivos;
 };

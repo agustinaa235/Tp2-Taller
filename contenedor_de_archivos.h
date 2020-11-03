@@ -5,7 +5,8 @@
 #include "cola_protegida.h"
 
 class Contenedor_Archivos{
-      public: /*
+      public:
+              /*
                 * inicializara al contenedor de archivos dejandolo valido
               */
               Contenedor_Archivos(ColaProtegida* cola, char** &argv, int &argc);
@@ -23,12 +24,13 @@ class Contenedor_Archivos{
               bool esta_vacio();
               /*
                 * devuelve un archivo que se encuentra en la cola de archivos
-              */  
+              */
               std::string dar_archivo();
+
       private:
-              ColaProtegida* cola_protegida;
-              char** argv;
-              int argc;
+            ColaProtegida* cola_protegida;
+            char** argv;
+            int argc;
 };
 
 #endif
