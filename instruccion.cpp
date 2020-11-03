@@ -18,20 +18,18 @@ std::string Instruccion::get_informacion(){
 }
 bool Instruccion::es_ret(){
     std::string ret = "ret";
-    int pos = -1;
-    pos = this->informacion.find(ret);
+    int pos = this->informacion.find(ret);
     return (pos>-1?true:false);
 }
 
 bool Instruccion::es_salto(){
     bool es_salto = false;
-    int i=0;
-    int pos = -1;
+    int i = 0;
     std::vector<std::string> saltos = {"jmp", "ja", "jeq", "jneq", "jlt",
                                         "jge", "jgt", "jle", "jne", "jset"};
     int cant_saltos = saltos.size();
     while (i<cant_saltos && !es_salto){
-        pos = this->informacion.find(saltos[i]);
+        int pos = this->informacion.find(saltos[i]);
         if (pos > -1){
             es_salto = true;
           }
@@ -55,8 +53,7 @@ bool Instruccion::instruccion_contiene_una_coma(){
 }
 bool Instruccion::contiene_etiqueta(const std::string& instruccion,
                                     const std::string& etiqueta){
-    int pos = -1;
-    pos = instruccion.find(etiqueta);
+    int pos = instruccion.find(etiqueta);
     return (pos>-1?true:false);
 }
 
@@ -82,18 +79,19 @@ void Instruccion::relacionar_instrucciones_con_etiqueta(Grafo& grafo,
       std::string etiqueta = this->informacion.substr(0, pos);
       for (int i = 0; i<cant_instrucciones; i++){
           if (contiene_etiqueta(instrucciones[i].get_informacion(), etiqueta)
-            && i!=pos_instruccion && instrucciones[i].es_salto() &&
-             etiqueta_con_salto(instrucciones[i].get_informacion(), etiqueta)){
-              grafo.agregar_arista(i, pos_instruccion);
+              && i!=pos_instruccion && instrucciones[i].es_salto() &&
+               etiqueta_con_salto(instrucciones[i].get_informacion(),etiqueta)){
+                    grafo.agregar_arista(i, pos_instruccion);
           }
       }
     }
-    if (pos_instruccion < cant_instrucciones -1){
+    if (pos_instruccion < cant_instrucciones - 1){
         grafo.agregar_arista(pos_instruccion, pos_instruccion + 1);
     }
 }
 
-void Instruccion::agregarse_al_grafo(Grafo& grafo, const int& pos_instruccion,
+void Instruccion::relacionarse_al_grafo(Grafo& grafo,
+                                      const int& pos_instruccion,
                                       std::vector<Instruccion>& instrucciones){
     int cant_instrucciones = instrucciones.size();
     if (this->es_comun() && pos_instruccion < cant_instrucciones -1){

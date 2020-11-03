@@ -1,40 +1,44 @@
 #ifndef GRAFO_H
 #define GRAFO_H
 
+#include "nodo.h"
 #include <vector>
 #include <string>
 
 
-class Nodo{
-  public:
-        Nodo(const std::string& informacion, const int& orden);
-        ~Nodo();
-        void agregar_vecino(Nodo& nodoVecino);
-        std::string get_informacion();
-        std::vector<Nodo*>& get_vecinos();
-        bool fue_visitado();
-        void visitar();
-        int estado_nodo();
-        void visitar_parcialmente();
-        void visitar_finalmente();
-        int orden_de_agregado();
-  private:
-        std::string informacion;
-        std::vector<Nodo*> vecinos;
-        bool visitado;
-        int orden_agregado;
-};
-
 class Grafo{
-    public:
-          Grafo();
-          ~Grafo();
-          void agregar_nodo(const std::string& informacion);
-          void agregar_arista(const int& pos1,const int& pos2);
-          bool dfs();
-          bool nodos_sin_visitar();
-    private:
-          std::vector<Nodo> nodos;
+      public: /*
+                * creara al grafo dejandolo valido
+              */
+              Grafo();
+              /*
+                * destruira al grafo con todos sus recursos
+              */
+              ~Grafo();
+              /*
+                * creara un nodo y lo agregara al grafo con su correspondiente
+                * orden de agregado
+              */
+              void agregar_nodo(const std::string& informacion);
+              /*
+                * se buscara en el vector los nodos que corresponden a las
+                * posiciones que llegan por parametro y se realiza la conexion
+                * se toma como que los nodos ya se encuentran en el grafo
+              */
+              void agregar_arista(const int& pos1,const int& pos2);
+              /*
+                * se realizara el algoritmos de dfs devolviendo true si hay
+                * ciclos o false si no
+              */
+              bool dfs();
+              /*
+                * devolvera true si hay nodos sin visitar sino devolvera false
+                * en caso de no llamar primero a la funcion de dfs devolvera
+                * que hay nodos sin visitar.
+              */  
+              bool nodos_sin_visitar();
+      private:
+              std::vector<Nodo> nodos;
 };
 
 #endif

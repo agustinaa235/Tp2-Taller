@@ -16,10 +16,11 @@ Parceador::~Parceador(){
         this->archivo.close();
     }
 }
-void Parceador::inicializar_grafo(Grafo &grafo){
+void Parceador::relacionar_instrucciones_con_grafo(Grafo& grafo){
     int cant_instrucciones = this->instrucciones.size();
     for (int i=0; i<cant_instrucciones; i++){
-        this->instrucciones[i].agregarse_al_grafo(grafo,i,this->instrucciones);
+        this->instrucciones[i].relacionarse_al_grafo(grafo,i,
+                                                     this->instrucciones);
     }
 }
 Instruccion crearInstruccion(const std::string& data){
@@ -42,6 +43,6 @@ int Parceador::parcear_archivo(Grafo& grafo){
           grafo.agregar_nodo(instruccion.get_informacion());
         }
     }
-    inicializar_grafo(grafo);
+    relacionar_instrucciones_con_grafo(grafo);
     return EXITO;
 }

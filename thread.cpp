@@ -9,7 +9,7 @@
 
 
 Thread::Thread(Contenedor_Archivos* archivos,
-              Contenedor_Resultados* resultados) {
+               Contenedor_Resultados* resultados) {
     this->contenedor_archivos = archivos;
     this->contenedor_resultados = resultados;
 

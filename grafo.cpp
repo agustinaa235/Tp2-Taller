@@ -1,51 +1,16 @@
 #include "grafo.h"
-#include <vector>
-#include <iostream>
-//#include <string>
 #include <stack>
-#define BLANCO 0
-#define GRIS 1
-#define NEGRO 2
-#define HAY_CICLO 1
-#define NO_HAY_CICLO 0
+
+
 
 Grafo::Grafo(){
     this->nodos =std::vector<Nodo>();
 }
 Grafo::~Grafo(){}
 
-Nodo::Nodo(const std::string& informacion, const int& orden){
-    this->informacion = informacion;
-    this->vecinos = std::vector<Nodo*>();
-    this->visitado = false;
-    this->orden_agregado = orden;
-}
-Nodo::~Nodo(){}
-
-std::string Nodo::get_informacion(){
-    return this->informacion;
-}
-int Nodo::orden_de_agregado(){
-    return this->orden_agregado;
-}
-bool Nodo::fue_visitado(){
-    return this->visitado;
-}
-std::vector<Nodo*>& Nodo::get_vecinos(){
-    return this->vecinos;
-}
-
-void Nodo::visitar(){
-    this->visitado = true;
-}
-
-void Nodo::agregar_vecino(Nodo& nodovecino){
-    this->vecinos.push_back(&nodovecino);
-}
-
-void Grafo::agregar_nodo(const std::string& info){
+void Grafo::agregar_nodo(const std::string& informacion){
       int orden = this->nodos.size();
-      Nodo nodo(info, orden);
+      Nodo nodo(informacion, orden);
       this->nodos.push_back(nodo);
 }
 void Grafo::agregar_arista(const int& pos1,const int& pos2){
