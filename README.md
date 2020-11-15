@@ -6,7 +6,7 @@
 
     Padron: 104222
 
-#Introduccion
+# Introduccion
 
 El tp consta de verificar si un programa bpf tiene ciclos o isntrucciones
 de uso. Para eso se modelara el programa con un grafo donde sus nodos
@@ -14,7 +14,7 @@ seran las instrucciones Y para detectar estas condiciones se hara uso del
 la busqueda dfs. A su vez, estas vericicacones seran realizadas de forma
 paralela con una serie de hilos.
 
-#Diseño del tp
+# Diseño del tp
 
 El diseño del tp consta en tener un hilo prinipal (main) donde se
 instanciara los correspondientes objetos y luego se crearan una serie de
@@ -82,7 +82,7 @@ En el tp se decidio modelar las distintas clases:
       lockear y desloquear el mutex.
 
 
-Decisiones de implementacion
+# Decisiones de implementacion
 
 Para el grafo se decicio hacerlo como una lista de adyacencia en donde este
 se guarda en una vector priicpal a todos los nodos y luego cada nodo tiene
@@ -109,6 +109,7 @@ comportamiento de cada una y asu vez aislar por separa cada posible
 raice condition. En donde cada una tiene como atributo su correspondiente
 monitor en donde su monitor se encarga de porteger al objeto en particular.
 
+<<<<<<< HEAD
 # Segunda entrega
 
 * Se cambairos la variables que se pasaban por copia a que sea por
@@ -122,3 +123,13 @@ monitor en donde su monitor se encarga de porteger al objeto en particular.
   de los programas bpf. Esta clase hereada de la clase thread. Esto se hizo
   para si afuturo se quiera agregar otro tipo de hilo este pueda extender de
   la clase thread y asi generamos que el codigo sea abierto a extenciones.   
+=======
+# Diagramas
+![digrama relacion thread con contenedores](https://github.com/agustinaa235/Tp2-hilos/blob/main/contenedoresYMonitores.png)
+
+
+![digrama thread con otras clases](https://github.com/agustinaa235/Tp2-hilos/blob/main/relacion_thread.png)
+
+
+![digrama grafo con otras clases](https://github.com/agustinaa235/Tp2-hilos/blob/main/grafo_verificacion.png)
+>>>>>>> e282e25880e83615b10e1ab6df5d7ca193870337
