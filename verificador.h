@@ -7,7 +7,7 @@ class Verificador{
             /*
               * inicializara al verificador dejandolo valido
             */
-            explicit Verificador(Grafo* grafo);
+            explicit Verificador(Grafo& grafo);
             /*
               * liberara al verificador junto a sus recursos
             */
@@ -25,8 +25,9 @@ class Verificador{
               * sin usar o 3 si el programa esta bien
             */
             int verificar_bpf();
+
       private:
-            Grafo* grafo;
+            Grafo& grafo;
 };
 
 #endif

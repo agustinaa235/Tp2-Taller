@@ -6,7 +6,7 @@
 #include "thread.h"
 #include "contenedor_de_archivos.h"
 #include "contenedor_de_resultados.h"
-
+#include "procesador_bpf.h"
 #define EXITO 0
 #define ERROR 1
 #define TAMANIO_MAX 50
@@ -19,19 +19,20 @@ int main(int argc, char** argv){
         return 0;
     }
     int cant_de_hilos = atoi(argv[1]);
-    std::vector<Thread> threads;
-    ColaProtegida cola = ColaProtegida();
-    Vector_Protegido vector = Vector_Protegido();
-    Contenedor_Resultados contenedor_resultado = Contenedor_Resultados(&vector);
-    Contenedor_Archivos contenedor_archivos = Contenedor_Archivos(&cola, argv,
-                                                                  argc);
+    std::vector<Procesador_Bpf*> threads;
+    Contenedor_Resultados contenedor_resultado = Contenedor_Resultados();
+    Contenedor_Archivos contenedor_archivos = Contenedor_Archivos(argv,argc);
     contenedor_archivos.agregar_archivos();
     for (int i = 0; i < cant_de_hilos; i++) {
-        Thread thread = Thread(&contenedor_archivos, &contenedor_resultado);
-        threads.push_back(std::move(thread));
+        threads.push_back(new Procesador_Bpf(contenedor_archivos,
+                                             contenedor_resultado));
     }
     for (int i = 0; i<cant_de_hilos; i++){
-        threads[i].start();
+        threads[i]->start();
+    }
+    for (int i = 0; i<cant_de_hilos; i++){
+          threads[i]->join();
+          delete threads[i];
     }
     contenedor_resultado.imprimir_resultados();
     return 0;

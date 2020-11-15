@@ -34,7 +34,6 @@ bool Grafo::dfs(){
     Nodo* inicio = &(this->nodos[0]);
     std:: stack<Nodo*> dfsPila;
     dfsPila.push(inicio);
-    int i=0;
     while (!dfsPila.empty()){
         Nodo* nodo = dfsPila.top();
         dfsPila.pop();
@@ -43,16 +42,15 @@ bool Grafo::dfs(){
         }
         std::vector<Nodo*>& vecinos = nodo->get_vecinos();
         int cant_vecinos = vecinos.size();
-        for (int i =0 ; i<cant_vecinos; i++){
-            if (nodo->orden_de_agregado() > vecinos[i]->orden_de_agregado()
-                && vecinos[i]->fue_visitado()){
+        for (int j = 0; j<cant_vecinos; j++){
+            if (nodo->orden_de_agregado() > vecinos[j]->orden_de_agregado()
+                && vecinos[j]->fue_visitado()){
                 hay_ciclo = true;
             }
-            if (!vecinos[i]->fue_visitado()){
-                dfsPila.push(vecinos[i]);
+            if (!vecinos[j]->fue_visitado()){
+                dfsPila.push(vecinos[j]);
             }
         }
-        i++;
     }
     return hay_ciclo;
 }

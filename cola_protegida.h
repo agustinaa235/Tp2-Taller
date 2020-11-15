@@ -25,13 +25,13 @@ class ColaProtegida {
               /*
                 * agregara el nombre de un archivo a la cola
               */
-              void cargar_nombre_archivo(std::string nombre_archivo);
+              void cargar_nombre_archivo(std::string& nombre_archivo);
               /*
                 * devuelve si true si la cola esta vacia, sino false
               */
               bool esta_vacia();
 
-      private: 
+      private:
           std::mutex mutex;
           std::queue<std::string> cola_de_archivos;
 };

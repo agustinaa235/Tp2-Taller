@@ -3,16 +3,16 @@
 #define INSTRUCCIONES_SIN_USAR 2
 #define GOOD 3
 
-Verificador::Verificador(Grafo* grafo){
-    this->grafo = grafo;
-}
+Verificador::Verificador(Grafo& grafo) :
+    grafo(grafo){}
+
 Verificador::~Verificador(){}
 
 bool Verificador::verificar_ciclo(){
-    return this->grafo->dfs();
+    return this->grafo.dfs();
 }
 bool Verificador::verificar_instrucciones_sin_usar(){
-    return this->grafo->nodos_sin_visitar();
+    return this->grafo.nodos_sin_visitar();
 }
 
 int Verificador::verificar_bpf(){

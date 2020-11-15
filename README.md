@@ -108,3 +108,17 @@ resultados, que serian los objetos compartidos para poder aislar mejor el
 comportamiento de cada una y asu vez aislar por separa cada posible
 raice condition. En donde cada una tiene como atributo su correspondiente
 monitor en donde su monitor se encarga de porteger al objeto en particular.
+
+# Segunda entrega
+
+* Se cambairos la variables que se pasaban por copia a que sea por
+  referencia. Tambien se agrego const a las varibales y metodos correspondientes
+
+* El contenedor de archivos ya no recibe la cola protegida por parametro
+  sino que la crea adentro. Esto se hizo para lograr mayor encapsulamiento.
+  Lo mismo se hizo con el contendor de resultados y el vector protegido.
+
+* SE creo una clase procesador bpf en donde se reseulve toda la verificacion
+  de los programas bpf. Esta clase hereada de la clase thread. Esto se hizo
+  para si afuturo se quiera agregar otro tipo de hilo este pueda extender de
+  la clase thread y asi generamos que el codigo sea abierto a extenciones.   

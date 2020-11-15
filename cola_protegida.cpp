@@ -10,10 +10,11 @@ ColaProtegida::ColaProtegida(const ColaProtegida& otraCola){
     this->cola_de_archivos = otraCola.cola_de_archivos;
 }
 
-void ColaProtegida::cargar_nombre_archivo(std::string nombre_archivo){
+void ColaProtegida::cargar_nombre_archivo(std::string& nombre_archivo){
     this->cola_de_archivos.push(nombre_archivo);
 }
 bool ColaProtegida::esta_vacia(){
+    Lock lock(this->mutex);
     return this->cola_de_archivos.empty();
 }
 std::string ColaProtegida::dar_archivo_si_cola_no_esta_vacia(){

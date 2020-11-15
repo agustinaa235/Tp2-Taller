@@ -9,7 +9,7 @@ class Contenedor_Archivos{
               /*
                 * inicializara al contenedor de archivos dejandolo valido
               */
-              Contenedor_Archivos(ColaProtegida* cola, char** &argv, int &argc);
+              Contenedor_Archivos(char** &argv, const int &argc);
               /*
                 * liberara al contenedor de archivos con sus recursos
               */
@@ -28,7 +28,7 @@ class Contenedor_Archivos{
               std::string dar_archivo();
 
       private:
-            ColaProtegida* cola_protegida;
+            ColaProtegida cola_protegida;
             char** argv;
             int argc;
 };

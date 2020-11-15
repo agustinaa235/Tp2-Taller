@@ -17,7 +17,7 @@ std::string Instruccion::get_informacion(){
     return this->informacion;
 }
 bool Instruccion::es_ret(){
-    std::string ret = "ret";
+    const std::string ret = "ret";
     int pos = this->informacion.find(ret);
     return (pos>-1?true:false);
 }
@@ -52,19 +52,19 @@ bool Instruccion::instruccion_contiene_una_coma(){
       return (cant_de_comas==1?true:false);
 }
 bool Instruccion::contiene_etiqueta(const std::string& instruccion,
-                                    const std::string& etiqueta){
+                                    const std::string& etiqueta) const{
     int pos = instruccion.find(etiqueta);
     return (pos>-1?true:false);
 }
 
-bool Instruccion::etiqueta_con_salto(std::string instruccion,
-                                     std::string& etiqueta){
+bool Instruccion::etiqueta_con_salto(const std::string& instruccion,
+                                     const std::string& etiqueta) const{
     int pos = instruccion.find(etiqueta);
     if (pos == -1){
         return false;
     }
-    std::string etiqueta1 = instruccion.substr(pos, instruccion.size() -1);
-    std::string etiqueta2 = etiqueta + ',';
+    const std::string etiqueta1 = instruccion.substr(pos, instruccion.size()-1);
+    const std::string etiqueta2 = etiqueta + ',';
     int pos2 = instruccion.find(etiqueta2);
     return (etiqueta == etiqueta1 || pos2 > -1);
 }
@@ -72,7 +72,7 @@ bool Instruccion::etiqueta_con_salto(std::string instruccion,
 void Instruccion::relacionar_instrucciones_con_etiqueta(Grafo& grafo,
                                         std::vector<Instruccion>& instrucciones,
                                         const int& pos_instruccion){
-    std::string formatoDosPuntos(":");
+    const std::string formatoDosPuntos(":");
     int pos = this->informacion.find(formatoDosPuntos);
     int cant_instrucciones = instrucciones.size();
     if (pos > - 1){

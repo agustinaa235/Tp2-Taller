@@ -34,7 +34,7 @@ class Instruccion{
                                                     std::vector<Instruccion>&
                                                     instrucciones,
                                                     const int& pos_instruccion);
-                                                    
+
       private:
               std::string informacion;
               bool etiqueta;
@@ -47,13 +47,13 @@ class Instruccion{
                 * etiqueta sino devolvera false
               */
               bool contiene_etiqueta(const std::string& instruccion,
-                                     const std::string& etiqueta);
+                                     const std::string& etiqueta) const;
               /*
                 * devuelve true si la relacion es de una etiqueta con salto
                 * especifico sino false
               */
-              bool etiqueta_con_salto(std::string instruccion,
-                                      std::string& etiqueta);
+              bool etiqueta_con_salto(const std::string& instruccion,
+                                      const std::string& etiqueta) const;
               /*
                 * devuelve true si el salto se trata de un salto con coma
               */

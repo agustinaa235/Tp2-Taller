@@ -1,36 +1,35 @@
 #ifndef THREAD_H
 #define THREAD_H
-#include "contenedor_de_archivos.h"
-#include "contenedor_de_resultados.h"
 #include <thread>
-
+#include <utility>
 class Thread {
       public:
               /*
                 * creara al thread dejandolo valido para uso
               */
-              Thread(Contenedor_Archivos* contenedor_archivos,
-                      Contenedor_Resultados* contenedor_resultados);
+              Thread();
               /*
-                * se encargara de ir ejecutando el metodo run mientras se
-                * tenga archivos para usar
+                * se encargara de arrancar el hilo
               */
               void start();
               /*
-                * Se encarga de ejecutar las correspondientes funciones para
-                * verificar los programas bpf
+                * Se encarga de correr el hilo
               */
-              void run();
+              virtual void run() = 0;
               /*
                 * Se encarga de liberar al thread con sus recursos
               */
-              ~Thread();
+              virtual ~Thread() {}
+              /*
+                * se encarga de hacer join del thread
+              */
+              void join();
               Thread(const Thread&) = delete;
               Thread(Thread&& otroThread);
+              Thread& operator=(Thread&& otroThread);
+              Thread& operator=(const Thread&) = delete;
 
       private:
-              Contenedor_Archivos* contenedor_archivos;
-              Contenedor_Resultados* contenedor_resultados;
               std::thread thread;
 };
 

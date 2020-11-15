@@ -10,7 +10,7 @@ class Contenedor_Resultados{
             /*
               * Creara al contendor de resultados dejandolo valido
             */
-            explicit Contenedor_Resultados(Vector_Protegido* vector);
+            Contenedor_Resultados();
             /*
               * se encargara de destruir el objeto contendor de resultados
               * liberando los correspondientes recursos
@@ -26,7 +26,7 @@ class Contenedor_Resultados{
             */
             void imprimir_resultados();
       private:
-              Vector_Protegido* vector_de_resultados;
+              Vector_Protegido vector_de_resultados;
 };
 
 #endif

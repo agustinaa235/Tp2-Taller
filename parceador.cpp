@@ -25,7 +25,7 @@ void Parceador::relacionar_instrucciones_con_grafo(Grafo& grafo){
 }
 Instruccion crearInstruccion(const std::string& data){
     int pos = -1;
-    std::string formatoDosPuntos(":");
+    const std::string formatoDosPuntos(":");
     pos = data.find(formatoDosPuntos);
     if (pos > -1){
         return Instruccion(data, true);
